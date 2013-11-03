@@ -1,0 +1,9 @@
+name: ring3bot
+version: 0.1.0
+synopsis: Ring3 IRC bot
+obuild-ver: 1
+
+executable ring3bot
+  main: ring3bot.ml
+  src-dir: ring3bot
+  build-deps: irc-client.lwt
