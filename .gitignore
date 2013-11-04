@@ -1,3 +1,6 @@
 dist/
 
+lib/config_j.ml*
+lib/config_t.ml*
+
 *.swp

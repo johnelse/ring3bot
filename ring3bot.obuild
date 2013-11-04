@@ -3,6 +3,11 @@ version: 0.1.0
 synopsis: Ring3 IRC bot
 obuild-ver: 1
 
+library ring3bot_lib
+  src-dir: lib
+  modules: config_t, config_j, config
+  build-deps: yojson, atdgen
+
 executable ring3bot
   main: ring3bot.ml
   src-dir: ring3bot

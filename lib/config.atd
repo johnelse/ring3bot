@@ -1,0 +1,6 @@
+type config = {
+  server: string;
+  port: int;
+  nick: string;
+  password: string;
+}
