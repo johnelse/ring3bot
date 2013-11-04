@@ -18,4 +18,6 @@ dist/build/ring3bot/ring3bot: dist/setup
 
 .PHONY: clean
 clean:
+	rm -f $(CONFIG_PARSER)*
+	rm -f $(CONFIG_TYPES)*
 	rm -rf dist
