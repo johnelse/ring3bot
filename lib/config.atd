@@ -3,4 +3,6 @@ type config = {
   port: int;
   nick: string;
   password: string;
+  ?username: string option;
+  ?realname: string option;
 }
