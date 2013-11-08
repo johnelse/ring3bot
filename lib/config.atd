@@ -1,6 +1,7 @@
 type config = {
   server: string;
   port: int;
+  channel: string;
   nick: string;
   password: string;
   ?username: string option;
