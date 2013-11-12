@@ -1,0 +1,6 @@
+PKG yojson atdgen irc-client.lwt
+S lib
+S ring3bot
+
+B dist/build/lib-ring3bot_lib
+B dist/build/ring3bot
