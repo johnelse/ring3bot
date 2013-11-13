@@ -10,5 +10,5 @@ library ring3bot_lib
 
 executable ring3bot
   main: ring3bot.ml
-  src-dir: ring3bot
+  src-dir: src
   build-deps: irc-client.lwt, ring3bot_lib
