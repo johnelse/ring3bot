@@ -1,0 +1,7 @@
+{
+  "server":"1.2.3.4",
+  "port":6667,
+  "channel":"#testchannel",
+  "nick":"ring3bot",
+  "password":"foo"
+}
