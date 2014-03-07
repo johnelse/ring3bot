@@ -1,4 +1,4 @@
-let config_filename = ".ring3bot.rc"
+let config_filename = ".config/ring3bot/ring3bot.rc"
 
 let with_file ~path ~f =
   let chan = open_in path in
