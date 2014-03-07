@@ -1,6 +1,9 @@
-dist/
+*.swp
 
 lib/config_j.ml*
 lib/config_t.ml*
 
-*.swp
+ring3bot.native
+
+setup.data
+setup.log

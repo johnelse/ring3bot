@@ -1,4 +1,6 @@
-all: dist/build/ring3bot/ring3bot
+all: build
+
+J=4
 
 CONFIG_DEFINITION=lib/config.atd
 CONFIG_PARSER=lib/config_j.ml
@@ -10,14 +12,15 @@ $(CONFIG_PARSER): $(CONFIG_DEFINITION)
 $(CONFIG_TYPES): $(CONFIG_DEFINITION)
 	atdgen -t $(CONFIG_DEFINITION)
 
-dist/setup: $(CONFIG_PARSER) $(CONFIG_TYPES) ring3bot.obuild
-	obuild configure
+setup.ml: _oasis $(CONFIG_PARSER) $(CONFIG_TYPES)
+	oasis setup
 
-dist/build/ring3bot/ring3bot: dist/setup
-	obuild build
+setup.data: setup.ml
+	ocaml setup.ml -configure
 
-.PHONY: clean
+build: setup.data setup.ml
+	ocaml setup.ml -build -j $(J)
+
 clean:
-	rm -f $(CONFIG_PARSER)*
-	rm -f $(CONFIG_TYPES)*
-	rm -rf dist
+	ocamlbuild -clean
+	rm -f setup.data setup.log

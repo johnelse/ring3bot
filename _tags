@@ -1,0 +1,37 @@
+# OASIS_START
+# DO NOT EDIT (digest: 012151338ceb1289fc1b075b9ca61d45)
+# Ignore VCS directories, you can use the same kind of rule outside 
+# OASIS_START/STOP if you want to exclude directories that contains 
+# useless stuff for the build process
+<**/.svn>: -traverse
+<**/.svn>: not_hygienic
+".bzr": -traverse
+".bzr": not_hygienic
+".hg": -traverse
+".hg": not_hygienic
+".git": -traverse
+".git": not_hygienic
+"_darcs": -traverse
+"_darcs": not_hygienic
+# Library ring3bot_lib
+"lib/ring3bot_lib.cmxs": use_ring3bot_lib
+<lib/ring3bot_lib.{cma,cmxa}>: oasis_library_ring3bot_lib_byte
+<lib/*.ml{,i}>: oasis_library_ring3bot_lib_byte
+<lib/ring3bot_lib.{cma,cmxa}>: oasis_library_ring3bot_lib_native
+<lib/*.ml{,i}>: oasis_library_ring3bot_lib_native
+<lib/*.ml{,i}>: pkg_yojson
+<lib/*.ml{,i}>: pkg_atdgen
+# Executable ring3bot
+<src/ring3bot.{native,byte}>: oasis_executable_ring3bot_byte
+<src/*.ml{,i}>: oasis_executable_ring3bot_byte
+<src/ring3bot.{native,byte}>: oasis_executable_ring3bot_native
+<src/*.ml{,i}>: oasis_executable_ring3bot_native
+<src/ring3bot.{native,byte}>: use_ring3bot_lib
+<src/ring3bot.{native,byte}>: pkg_irc-client.lwt
+<src/ring3bot.{native,byte}>: pkg_yojson
+<src/ring3bot.{native,byte}>: pkg_atdgen
+<src/*.ml{,i}>: use_ring3bot_lib
+<src/*.ml{,i}>: pkg_irc-client.lwt
+<src/*.ml{,i}>: pkg_yojson
+<src/*.ml{,i}>: pkg_atdgen
+# OASIS_STOP

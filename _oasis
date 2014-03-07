@@ -1,0 +1,25 @@
+OASISFormat:               0.3
+Name:                      ring3bot
+Version:                   0.1.0
+Synopsis:                  Ring3 IRC bot
+License:                   MIT
+Authors:                   John Else
+Copyrights:                (C) 2013 John Else
+BuildTools:                ocamlbuild
+
+Library ring3bot_lib
+  Path:                    lib
+  Findlibname:             ring3bot-lib
+  ByteOpt:                 -bin-annot
+  NativeOpt:               -bin-annot
+  Modules:                 Config_j, Config_t, Config
+  BuildDepends:            yojson, atdgen
+
+Executable ring3bot
+  Path:                    src
+  MainIs:                  ring3bot.ml
+  Install:                 false
+  ByteOpt:                 -bin-annot
+  NativeOpt:               -bin-annot
+  CompiledObject:          best
+  BuildDepends:            irc-client.lwt, ring3bot-lib
