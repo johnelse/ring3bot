@@ -15,8 +15,9 @@ let print_message {Irc_message.prefix; command; params; trail} =
     (string_list_to_string params)
     (string_opt_to_string trail)
 
-let callback =
-  let open Irc_message in function
+let callback ~connection ~result =
+  let open Irc_message in
+  match result with
   | Message contents ->
     print_message contents
   | Parse_error (message, error) ->
