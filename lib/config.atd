@@ -3,7 +3,7 @@ type config = {
   port: int;
   channel: string;
   nick: string;
-  password: string;
+  ?password: string option;
   ?username: string option;
   ?realname: string option;
 }

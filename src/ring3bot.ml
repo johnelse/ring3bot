@@ -25,7 +25,7 @@ let callback ~connection ~result =
 
 let lwt_main config =
   let open Config_t in
-  C.connect
+  C.connect_by_name
     ~server:config.server
     ~port:config.port
     ~username:(match config.username with
@@ -36,10 +36,14 @@ let lwt_main config =
       | Some realname -> realname
       | None -> config.nick)
     ~nick:config.nick
-    ~password:config.password
-  >>= (fun connection ->
-    C.send_join ~connection ~channel:config.channel
-    >>= (fun () -> C.listen ~connection ~callback))
+    ?password:config.password
+    ()
+  >>= (function
+    | Some connection ->
+      C.send_join ~connection ~channel:config.channel
+      >>= (fun () -> C.listen ~connection ~callback)
+    | None ->
+      Lwt.fail (Failure "Host not found"))
 
 let () =
   let config = Config.load () in
