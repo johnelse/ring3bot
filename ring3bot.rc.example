@@ -1,5 +1,5 @@
 {
-  "server":"1.2.3.4",
+  "server":"chat.freenode.net",
   "port":6667,
   "channel":"#testchannel",
   "nick":"ring3bot",
