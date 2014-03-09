@@ -23,4 +23,6 @@ build: setup.data setup.ml
 
 clean:
 	ocamlbuild -clean
+	rm -f $(CONFIG_PARSER)*
+	rm -f $(CONFIG_TYPES)*
 	rm -f setup.data setup.log
