@@ -15,9 +15,14 @@ let print_message {Irc_message.prefix; command; params; trail} =
     (string_list_to_string params)
     (string_opt_to_string trail)
 
-let callback ~connection ~result =
+let callback ~connection ~result ~config =
+  let open Config_t in
   let open Irc_message in
   match result with
+  | Message ({command = "PRIVMSG"; trail = Some message} as contents) ->
+    print_message contents
+    >>= (fun () ->
+      C.send_privmsg ~connection ~target:config.channel ~message)
   | Message contents ->
     print_message contents
   | Parse_error (message, error) ->
@@ -41,7 +46,11 @@ let lwt_main config =
   >>= (function
     | Some connection ->
       C.send_join ~connection ~channel:config.channel
-      >>= (fun () -> C.listen ~connection ~callback)
+      >>= (fun () ->
+        C.listen
+          ~connection
+          ~callback:(fun ~connection ~result ->
+            callback ~connection ~result ~config))
     | None ->
       Lwt.fail (Failure "Host not found"))
 
