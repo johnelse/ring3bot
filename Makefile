@@ -12,13 +12,13 @@ $(CONFIG_PARSER): $(CONFIG_DEFINITION)
 $(CONFIG_TYPES): $(CONFIG_DEFINITION)
 	atdgen -t $(CONFIG_DEFINITION)
 
-setup.ml: _oasis $(CONFIG_PARSER) $(CONFIG_TYPES)
+setup.ml: _oasis
 	oasis setup
 
 setup.data: setup.ml
 	ocaml setup.ml -configure
 
-build: setup.data setup.ml
+build: setup.data setup.ml $(CONFIG_PARSER) $(CONFIG_TYPES)
 	ocaml setup.ml -build -j $(J)
 
 clean:
